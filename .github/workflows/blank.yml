@@ -35,6 +35,9 @@ jobs:
         dotnet build --configuration Release --no-restore
         dotnet test --no-restore --verbosity normal
         dotnet publish -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'
+        echo "estamos aqui"
+        ls -la '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'
+        echo "agora aqui"
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
