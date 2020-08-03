@@ -40,10 +40,10 @@ jobs:
         pwd
         ls -la
         echo "exibindo secret"
-        cat ${{ secrets.APP_SETTINGS }}
+        echo ${{ secrets.APP_SETTINGS }}
         
         echo "atualizando secret"
-        cat ${{ secrets.APP_SETTINGS }} > '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
+        echo ${{ secrets.APP_SETTINGS }} > '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
         
         echo "exibindo appsenttings"
         ls -la '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
