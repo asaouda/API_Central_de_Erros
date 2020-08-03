@@ -39,7 +39,7 @@ jobs:
         echo "estamos aqui"
         pwd
         ls -la
-        ls -la '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/*'
+        ls -la '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/'
         echo "agora aqui"
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
@@ -52,8 +52,8 @@ jobs:
         echo "stage teste"
         pwd
         ls -la
-        echo '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/*'      
-        cd '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/*'      
+        echo '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'      
+        cd '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'      
         pwd
         ls -la
         echo "final stage"
