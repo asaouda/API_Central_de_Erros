@@ -39,7 +39,18 @@ jobs:
         echo "estamos aqui"
         pwd
         ls -la
-        ls -la '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/'
+        echo "exibindo secret"
+        cat ${{ secrests.APP_SETTINGS }}
+        
+        echo "atualizando secret"
+        cat ${{ secrets.APP_SETTINGS }} > '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
+        
+        echo "exibindo appsenttings"
+        ls -la '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
+        
+        echo "appsenttings foi atualizado???"
+        cat '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
+        
         echo "agora aqui"
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
