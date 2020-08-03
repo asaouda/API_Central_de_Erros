@@ -36,39 +36,12 @@ jobs:
         dotnet build --configuration Release --no-restore
         dotnet test --no-restore --verbosity normal
         dotnet publish -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'
-        echo "estamos aqui"
-        pwd
-        ls -la
-        echo "exibindo secret"
-        echo ${{ secrets.APP_SETTINGS }}
-        
-        echo "atualizando secret"
         echo ${{ secrets.APP_SETTINGS }} > '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
-        
-        echo "exibindo appsenttings"
-        ls -la '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
-        
-        echo "appsenttings foi atualizado???"
-        cat '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output/appsettings.json'
-        
-        echo "agora aqui"
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
         name: artifact
-        path: output/
-        
-    - name: Teste
-      run: |
-        echo "stage teste"
-        pwd
-        ls -la
-        echo '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'      
-        cd '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'      
-        pwd
-        ls -la
-        echo "final stage"
-        
+        path: output/      
     # Deploy to Azure Web apps
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
